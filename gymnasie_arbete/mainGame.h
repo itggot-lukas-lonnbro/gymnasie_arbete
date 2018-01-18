@@ -1,8 +1,10 @@
 #pragma once
 
-#include <SDL\SDL.h>
 #include "shaders.h"
 #include "inputProcessing.h"
+
+#include <SDL\SDL.h>
+#include <glm-0.9.9-a1\glm\glm.hpp>
 
 class mainGame
 {

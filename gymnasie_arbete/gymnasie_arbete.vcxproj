@@ -117,20 +117,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dynamnic.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="eStatic.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="inputProcessing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainGame.cpp" />
+    <ClCompile Include="model.cpp" />
     <ClCompile Include="models.cpp" />
     <ClCompile Include="shaders.cpp" />
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dynamnic.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="errorLogger.h" />
+    <ClInclude Include="eStatic.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="inputProcessing.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="mainGame.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="models.h" />
     <ClInclude Include="shaders.h" />
   </ItemGroup>

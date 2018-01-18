@@ -3,8 +3,10 @@
 #include <iostream>
 #include <GL\glew.h>
 #include <SDL\SDL.h>
-#include <glm-0.9.9-a1\glm\glm.hpp>
 #include <glm-0.9.9-a1\glm\gtc\type_ptr.hpp>
+#include <glm-0.9.9-a1\glm\gtc\matrix_transform.hpp>
+
+#include "entity.h"
 
 mainGame::mainGame(int w, int h) : state(gameState::PLAY)
 {
@@ -51,12 +53,12 @@ void mainGame::openGLSetup() {
 		std::cin >> a;
 	}
 
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+
 	glViewport(0, 0, WIDTH, HEIGHT);
 	glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 }
-
-
-
 void mainGame::setup() {
 	SDLSetup();
 	openGLSetup();
@@ -92,6 +94,9 @@ void mainGame::setup() {
 	glBindVertexArray(0);
 
 	basicShader.init("basicVertex.glsl", "basicFragment.glsl");
+
+	entity test;
+	test.loadModel("testmodel.txt");
 }
 
 void mainGame::run() {
@@ -107,7 +112,7 @@ void mainGame::gameLoop() {
 }
 void mainGame::update() {
 	inputHandler.update();
-	if(inputHandler.events.quit){
+	if(inputHandler.events.quit ||inputHandler.events.q){
 		state = gameState::EXIT;
 	}
 }
@@ -115,16 +120,15 @@ void mainGame::draw() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	basicShader.useShader();
-
-	glm::vec3 color = glm::vec3(1.0f, 0.0f, 1.0f);
+	
+	glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
 	basicShader.setFloat3f("objectColor", glm::value_ptr(color));
 
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glBindVertexArray(0);
-	basicShader.unUseShader();
 
-	//std::cout << "draw" << std::endl;
+	basicShader.unUseShader();
 
 	SDL_GL_SwapWindow(window);
 }
